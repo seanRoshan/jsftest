@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<body>
+
+
+    <p:layout style="min-width:400px;min-height:400px;">
+
+
+        <p:layoutUnit position="west" resizable="true" size="auto">
+
+            <h:form>
+                <p:menu>
+                    <p:submenu label="Dashboard">
+                        <p:menuitem value="Save" actionListener="#{dashboardView.save}" update="" icon="ui-icon-disk" />
+                        <p:menuitem value="Update" actionListener="#{dashboardView.save}" update="" icon="ui-icon-arrowrefresh-1-w" />
+                    </p:submenu>
+                    <p:submenu label="Non-Ajax">
+                        <p:menuitem value="Delete" actionListener="#{dashboardView.save}" update="" ajax="false" icon="ui-icon-close" />
+                    </p:submenu>
+                    <p:submenu label="Navigations">
+                        <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home" />
+                        <p:menuitem value="Internal" icon="ui-icon-star" />
+                    </p:submenu>
+                </p:menu>
+
+            </h:form>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="center" resizable="true" size="auto">
+            <h:form>
+
+                <p:growl id="growl" showDetail="true" sticky="true" />
+
+                <p:fieldset legend="Profile" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel id="firstNameLabel" value="First Name: #{dashboardView.user.firstName}"></h:outputLabel>
+                        <br />
+                        <h:outputLabel id="lastNameLabel" value="Last Name: #{dashboardView.user.lastName}"></h:outputLabel>
+                    </h:panelGrid>
+                </p:fieldset>
+
+                <p:fieldset legend="Edit Profile" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <h:outputLabel value="First Name: " />
+                        <p:inputText value="#{dashboardView.user.firstName}" />
+
+                        <h:outputLabel value="Last Name: " />
+                        <p:inputText value="#{dashboardView.user.lastName}" />
+
+                        <p:commandButton value="Save" id="save" actionListener="#{dashboardView.save}" update="growl firstNameLabel  lastNameLabel "
+                        />
+
+                    </h:panelGrid>
+                </p:fieldset>
+            </h:form>
+
+        </p:layoutUnit>
+
+    </p:layout>
+
+
+
+
+
+    <f:event type="preRenderView" listener="#{dashboardView.init}" />
+
+</body>
+
+</html>
