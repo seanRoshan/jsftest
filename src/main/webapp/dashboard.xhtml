@@ -14,12 +14,12 @@
 
             <h:form>
                 <p:menu>
-                    <p:submenu label="Dashboard">
-                        <p:menuitem value="Save" actionListener="#{dashboardView.save}" update="" icon="ui-icon-disk" />
-                        <p:menuitem value="Update" actionListener="#{dashboardView.save}" update="" icon="ui-icon-arrowrefresh-1-w" />
+                    <p:submenu label="Profile">
+                        <p:menuitem value="Show Profile" actionListener="#{dashboardView.showProfile}" update=":dashboard"/>
+                        <p:menuitem value="Edit Profile" actionListener="#{dashboardView.showEditProfile}" update=":dashboard"/>
                     </p:submenu>
-                    <p:submenu label="Non-Ajax">
-                        <p:menuitem value="Delete" actionListener="#{dashboardView.save}" update="" ajax="false" icon="ui-icon-close" />
+                    <p:submenu label="Products">
+                        <p:menuitem value="List" actionListener="#{dashboardView.showProfile}" update=":dashboard"/>
                     </p:submenu>
                     <p:submenu label="Navigations">
                         <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home" />
@@ -31,11 +31,11 @@
         </p:layoutUnit>
 
         <p:layoutUnit position="center" resizable="true" size="auto">
-            <h:form>
+            <h:form id="dashboard">
 
                 <p:growl id="growl" showDetail="true" sticky="true" />
 
-                <p:fieldset legend="Profile" style="margin-bottom:20px">
+                <p:fieldset id="showprofile" legend="Profile" style="margin-bottom:20px" rendered="#{dashboardView.showProfileRender}">
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputLabel id="firstNameLabel" value="First Name: #{dashboardView.user.firstName}"></h:outputLabel>
                         <br />
@@ -43,7 +43,7 @@
                     </h:panelGrid>
                 </p:fieldset>
 
-                <p:fieldset legend="Edit Profile" style="margin-bottom:20px">
+                <p:fieldset legend="Edit Profile" style="margin-bottom:20px" rendered="#{dashboardView.editProfileRender}">
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <h:outputLabel value="First Name: " />

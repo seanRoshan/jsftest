@@ -1,12 +1,24 @@
 package org.ocpc.ecommerce.model;
 
+import java.math.BigDecimal;
+
 public class Product {
 	
 	private int id;
 	private String name;
-	private int price;
+	private BigDecimal price;
 	private String description;
 	private int numOfInventory;
+	
+	
+	
+	public Product(int id, String name, BigDecimal price, String description, int numOfInventory) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.numOfInventory = numOfInventory;
+	}
 	
 	public int getId() {
 		return id;
@@ -20,10 +32,10 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public String getDescription() {
