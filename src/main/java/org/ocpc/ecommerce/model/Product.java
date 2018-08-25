@@ -10,8 +10,6 @@ public class Product {
 	private String description;
 	private int numOfInventory;
 	
-	
-	
 	public Product(int id, String name, BigDecimal price, String description, int numOfInventory) {
 		this.id = id;
 		this.name = name;

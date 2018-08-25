@@ -2,9 +2,6 @@ package org.ocpc.ecommerce.model;
 
 import java.util.Date;
 
-import javax.faces.bean.ManagedBean;
-
-@ManagedBean
 public class User {
 	
 	private int id;

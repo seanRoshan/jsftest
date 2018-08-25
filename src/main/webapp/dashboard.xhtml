@@ -1,73 +1,101 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
 
 <body>
 
+	<p:layout style="min-width:400px;min-height:400px;">
 
-    <p:layout style="min-width:400px;min-height:400px;">
+		<p:layoutUnit position="west" resizable="true" size="auto">
 
+			<h:form>
+				<p:menu>
+					<p:submenu label="Profile">
+						<p:menuitem value="Show Profile"
+							actionListener="#{dashboardView.showProfile}" update=":dashboard" />
+						<p:menuitem value="Edit Profile"
+							actionListener="#{dashboardView.showEditProfile}"
+							update=":dashboard" />
+					</p:submenu>
+					<p:submenu label="Products">
+						<p:menuitem value="List Products"
+							actionListener="#{dashboardView.showProducts}"
+							update=":dashboard" />
+					</p:submenu>
+					<p:submenu label="Navigations">
+					<p:menuitem value="Home"
+							actionListener="#{dashboardView.showHome}" update=":dashboard" />
+						<p:menuitem value="Logout"
+							actionListener="#{dashboardView.logout}" update=":dashboard" />
+					</p:submenu>
+				</p:menu>
 
-        <p:layoutUnit position="west" resizable="true" size="auto">
+			</h:form>
+		</p:layoutUnit>
 
-            <h:form>
-                <p:menu>
-                    <p:submenu label="Profile">
-                        <p:menuitem value="Show Profile" actionListener="#{dashboardView.showProfile}" update=":dashboard"/>
-                        <p:menuitem value="Edit Profile" actionListener="#{dashboardView.showEditProfile}" update=":dashboard"/>
-                    </p:submenu>
-                    <p:submenu label="Products">
-                        <p:menuitem value="List" actionListener="#{dashboardView.showProfile}" update=":dashboard"/>
-                    </p:submenu>
-                    <p:submenu label="Navigations">
-                        <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home" />
-                        <p:menuitem value="Internal" icon="ui-icon-star" />
-                    </p:submenu>
-                </p:menu>
+		<p:layoutUnit position="center" resizable="true" size="auto">
+			<h:form id="dashboard">
 
-            </h:form>
-        </p:layoutUnit>
-
-        <p:layoutUnit position="center" resizable="true" size="auto">
-            <h:form id="dashboard">
-
-                <p:growl id="growl" showDetail="true" sticky="true" />
-
-                <p:fieldset id="showprofile" legend="Profile" style="margin-bottom:20px" rendered="#{dashboardView.showProfileRender}">
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputLabel id="firstNameLabel" value="First Name: #{dashboardView.user.firstName}"></h:outputLabel>
-                        <br />
-                        <h:outputLabel id="lastNameLabel" value="Last Name: #{dashboardView.user.lastName}"></h:outputLabel>
-                    </h:panelGrid>
-                </p:fieldset>
-
-                <p:fieldset legend="Edit Profile" style="margin-bottom:20px" rendered="#{dashboardView.editProfileRender}">
-                    <h:panelGrid columns="2" cellpadding="5">
-
-                        <h:outputLabel value="First Name: " />
-                        <p:inputText value="#{dashboardView.user.firstName}" />
-
-                        <h:outputLabel value="Last Name: " />
-                        <p:inputText value="#{dashboardView.user.lastName}" />
-
-                        <p:commandButton value="Save" id="save" actionListener="#{dashboardView.save}" update="growl firstNameLabel  lastNameLabel "
-                        />
-
-                    </h:panelGrid>
-                </p:fieldset>
-            </h:form>
-
-        </p:layoutUnit>
-
-    </p:layout>
+				<p:growl id="growl" showDetail="true" sticky="true" />
 
 
+				<p:fieldset id="welcome" legend="Welcome" style="margin-bottom:20px"
+					rendered="#{dashboardView.welcomeRender}">
+					<h:panelGrid columns="1" cellpadding="5">
+						<h:outputLabel id="welcomefirstNameLabel"
+							value="Welcome to the Dashboard #{dashboardView.user.firstName}!"></h:outputLabel>
+					</h:panelGrid>
+				</p:fieldset>
 
+				<p:fieldset id="showprofile" legend="Profile"
+					style="margin-bottom:20px"
+					rendered="#{dashboardView.showProfileRender}">
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel id="firstNameLabel"
+							value="First Name: #{dashboardView.user.firstName}"></h:outputLabel>
+						<br />
+						<h:outputLabel id="lastNameLabel"
+							value="Last Name: #{dashboardView.user.lastName}"></h:outputLabel>
+					</h:panelGrid>
+				</p:fieldset>
 
+				<p:fieldset legend="Edit Profile" style="margin-bottom:20px"
+					rendered="#{dashboardView.editProfileRender}">
+					<h:panelGrid columns="2" cellpadding="5">
 
-    <f:event type="preRenderView" listener="#{dashboardView.init}" />
+						<h:outputLabel value="First Name: " />
+						<p:inputText value="#{dashboardView.user.firstName}" />
+
+						<h:outputLabel value="Last Name: " />
+						<p:inputText value="#{dashboardView.user.lastName}" />
+
+						<p:commandButton value="Save" id="save"
+							actionListener="#{dashboardView.save}"
+							update="growl firstNameLabel lastNameLabel " />
+
+					</h:panelGrid>
+				</p:fieldset>
+
+				<p:fieldset id="showProducts" legend="Products"
+					style="margin-bottom:20px"
+					rendered="#{dashboardView.showProductsRender}">
+					<h:panelGrid columns="1" cellpadding="5">
+						<ui:include src="product.xhtml" />
+					</h:panelGrid>
+				</p:fieldset>
+
+			</h:form>
+
+		</p:layoutUnit>
+
+	</p:layout>
+
+	<f:event type="preRenderView" listener="#{dashboardView.init}" />
 
 </body>
 

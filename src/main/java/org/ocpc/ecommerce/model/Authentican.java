@@ -1,8 +1,5 @@
 package org.ocpc.ecommerce.model;
 
-import javax.faces.bean.ManagedBean;
-
-@ManagedBean
 public class Authentican {
 	
 	private int id;
