@@ -33,7 +33,7 @@ public class DashboardView {
 		}
 	}
 
-	public void showHome() {
+	public void showHome(){
 		this.dashBoardViews = new boolean[5];
 		this.dashBoardViews[0] = true;
 	}
